@@ -56,7 +56,8 @@ def fit_logistic_regression(X, y):
     """
     weights = np.zeros((21,))
     X_transformed = transform_features(X)
-    # TODO: Enter your code here
+    inverse_X2 = np.linalg.inv(X.T @ X)
+    weights = inverse_X2 @ X.T @ y
     assert weights.shape == (21,)
     return weights
 
