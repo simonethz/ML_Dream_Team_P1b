@@ -3,6 +3,7 @@
 # First, we import necessary libraries:
 import numpy as np
 import pandas as pd
+from sklearn.linear_model import LogisticRegression
 import math
 
 # Add any additional imports here (however, the task is solvable without using 
@@ -56,8 +57,13 @@ def fit_logistic_regression(X, y):
     """
     weights = np.zeros((21,))
     X_transformed = transform_features(X)
-    inverse_X2 = np.linalg.inv(X.T @ X)
-    weights = inverse_X2 @ X.T @ y
+
+    model = LogisticRegression(fit_intercept=False, max_iter=10000)
+    model.fit(X_transformed, y)
+    weights = model.coef_.reshape(-1)
+
+    # inverse_X2 = np.linalg.inv(X_transformed.T @ X_transformed)
+    # weights = inverse_X2 @ X_transformed.T @ y
     assert weights.shape == (21,)
     return weights
 
