@@ -58,7 +58,7 @@ def fit_logistic_regression(X, y):
     weights = np.zeros((21,))
     X_transformed = transform_features(X)
 
-    model = LogisticRegression(fit_intercept=False, max_iter=10000)
+    model = LogisticRegression(fit_intercept=False, max_iter=1000000, C=10.0, solver="lbfgs")
     model.fit(X_transformed, y)
     weights = model.coef_.reshape(-1)
 
