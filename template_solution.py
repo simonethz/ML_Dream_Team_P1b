@@ -3,6 +3,7 @@
 # First, we import necessary libraries:
 import numpy as np
 import pandas as pd
+import math
 
 # Add any additional imports here (however, the task is solvable without using 
 # any additional imports)
@@ -26,8 +27,15 @@ def transform_features(X):
     ----------
     X_transformed: matrix of floats: dim = (700,21), transformed input with 21 features
     """
+
     X_transformed = np.zeros((700, 21))
-    # TODO: Enter your code here
+    
+    X_transformed[:, 0:5] = X
+    X_transformed[:, 5:10] = X**2
+    X_transformed[:, 10:15] = np.exp(X)
+    X_transformed[:, 15:20] = np.cos(X)
+    X_transformed[:, 20] = np.ones(np.size(X, axis=0))
+
     assert X_transformed.shape == (700, 21)
     return X_transformed
 
