@@ -22,21 +22,11 @@ def fit_logistic_regression(X, y):
     y = 2*y - 1
     weights = np.zeros((21,))
     X_transformed = transform_features(X)
-<<<<<<< HEAD
-
-    model = LogisticRegression(fit_intercept=False, max_iter=10000, C=10)
-    model.fit(X_transformed, y)
-    weights = model.coef_.reshape(-1)
-
-    # inverse_X2 = np.linalg.inv(X_transformed.T @ X_transformed)
-    # weights = inverse_X2 @ X_transformed.T @ y
-=======
     lamda = 1
     grad = logistic_gradient(weights, X_transformed, y)
     while np.linalg.norm(grad)>5e-5:
         weights = weights - grad * lamda
         grad = logistic_gradient(weights, X_transformed, y)
->>>>>>> d91a94c (final version)
     assert weights.shape == (21,)
     weights = weights / np.linalg.norm(weights)
     return weights
